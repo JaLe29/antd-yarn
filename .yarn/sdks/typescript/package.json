@@ -1,0 +1,33 @@
+{
+  "name": "mailhunt",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/JaLe29/mailhunt.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "r:limbani": "yarn workspace @mailhunt/app-builder start @mailhunt/limbani-api deployment.limbani",
+    "r:limbani-private": "yarn workspace @mailhunt/app-builder start @mailhunt/limbani-api deployment.limbani-private",
+    "r:ai-api": "yarn workspace @mailhunt/app-builder start @mailhunt/ai-api deployment.prod-ai-api-v2",
+    "r:api": "yarn workspace @mailhunt/app-builder start @mailhunt/api api-prod",
+    "r:worker": "yarn workspace @mailhunt/app-builder start @mailhunt/worker deployment.prod-mailhunt-worker",
+    "r:core-api": "yarn workspace @mailhunt/app-builder start @mailhunt/core-api deployment.prod-core-api",
+    "r:trash-api": "yarn workspace @mailhunt/app-builder start @mailhunt/trash-api deployment.prod-trash-api-mailhunt",
+    "clean": "yarn workspaces foreach -v -p -i -j 30 run clean && rimraf dist && rimraf .cache",
+    "forever:crawler": "yarn workspace @mailhunt/crawler start:dev",
+    "s:fe": "yarn workspace @mailhunt/fe dev",
+    "s:core-api": "yarn workspace @mailhunt/core-api start:dev",
+    "s:api": "yarn workspace @mailhunt/api start:dev",
+    "s:ai-api": "yarn workspace @mailhunt/ai-api start:dev"
+  },
+  "dependencies": {
+    "eslint-plugin-babel": "^5.3.1",
+    "typescript": "~4.6.2"
+  },
+  "packageManager": "yarn@3.2.0"
+}
